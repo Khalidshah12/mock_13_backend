@@ -23,4 +23,14 @@ jobsRouter.post('/add', async (req, res) => {
     };
 });
 
+jobsRouter.delete('/delete/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        await JobsModel.findByIdAndDelete({ _id: id });
+        res.send("Deleted Successfully");
+    } catch (e) {
+        res.send({ Error: "Something Went Wrong, Please Try Again Later" });
+    };
+});
+
 module.exports = { jobsRouter };
